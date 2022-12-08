@@ -1,0 +1,97 @@
+﻿@model TermWeb.Models.Article
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>글 내용</h1>
+
+<div>
+    <hr />
+    <h3 style="font-weight:700">
+        [@Html.DisplayFor(model => model.Head)] @Html.DisplayFor(model => model.Title)
+    </h3>
+    <hr />
+
+
+    <style>
+        .defaultInfo > dt {
+            padding-left: 0;
+        }
+    </style>
+
+    <dl class="defaultInfo">
+        <dt class="col-sm-2" style="float: left; text-align: left; width: 10%;">
+            @Html.DisplayNameFor(model => model.WriterID)
+        </dt>
+        <dd class="col-sm-10" style="float: left; text-align: center; width: 20%;">
+            @Html.DisplayFor(model => model.WriterID)
+        </dd>
+        <dt class="col-sm-2" style="float: left; text-align: left; width: 10%;">
+            @Html.DisplayNameFor(model => model.PostDate)
+        </dt>
+        <dd class="col-sm-10" style="float: left; text-align: right; width: 20%;">
+            @Html.DisplayFor(model => model.PostDate)
+        </dd>
+    </dl>
+
+    <br />
+    <hr />
+    <br />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Deadline)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Deadline)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemainDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemainDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsStillGoing)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsStillGoing)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MallName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MallName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@Html.DisplayFor(model => model.Link)">@Html.DisplayFor(model => model.Link)</a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price) (@Html.DisplayFor(model => model.Currency))
+        </dt>
+        <dd class="col-sm-10">
+            <span style="text-decoration:line-through;">@Html.DisplayFor(model => model.Currency)@Html.DisplayFor(model => model.OrigPrice)</span> -> @Html.DisplayFor(model => model.Currency)@Html.DisplayFor(model => model.Price) (@Html.DisplayFor(model => model.Discount)% 할인)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeliverPrice) (@Html.DisplayFor(model => model.Currency))
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Currency)@Html.DisplayFor(model => model.DeliverPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Etc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Etc)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">수정</a> |
+    <a asp-action="Index">목록으로 돌아가기</a>
+</div>

@@ -1,0 +1,81 @@
+﻿@model TermWeb.Models.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>특가 목록</h1>
+
+<p>
+    <a asp-action="Create">글 작성</a>
+</p>
+
+
+<form asp-controller="Articles" asp-action="Index" method="get">
+    <p>
+        @using (Html.BeginForm())
+        {
+        <p>
+            카테고리 : @Html.DropDownList("Category", "모두")
+
+            제목 : @Html.TextBox("SearchString")
+            <input type="submit" value="검색" />
+        </p>
+    }
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles![0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles![0].IsStillGoing)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles![0].WriterID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles![0].MallName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles![0].PostDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Articles!)
+            {
+                <tr>
+                    <td style="max-width:435px;">
+                        <p><a href="/Articles/Details/@Html.DisplayFor(modelItem => item.Id)">[@Html.DisplayFor(modelItem => item.Head)] @Html.DisplayFor(modelItem => item.Title)</a> </p>
+                        <p>
+                            <span style="text-decoration:line-through;">@Html.DisplayFor(modelItem => item.Currency)@Html.DisplayFor(modelItem => item.OrigPrice)</span> -> @Html.DisplayFor(modelItem => item.Currency)@Html.DisplayFor(modelItem => item.Price) + 배송비 @Html.DisplayFor(modelItem => item.Currency)@Html.DisplayFor(modelItem => item.DeliverPrice) <br />(@Html.DisplayFor(modelItem => item.Discount)% 할인)
+                        </p>
+                        <p style="width: 430px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">@Html.DisplayFor(modelItem => item.Etc)</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsStillGoing)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WriterID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MallName)
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.PostDate)</p>
+                        <p>@Html.DisplayFor(modelItem => item.Deadline) 까지<br />
+                        <p>@Html.DisplayFor(modelItem => item.RemainDate) 남음</p>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">수정</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">글 보기</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">글 삭제</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

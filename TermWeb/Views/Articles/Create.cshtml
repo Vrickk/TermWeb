@@ -1,0 +1,137 @@
+﻿@model TermWeb.Models.Article
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h1>글 작성</h1>
+
+<style>
+    legend {
+        font-size: 19px;
+    }
+</style>
+
+<hr />
+<div class="row">
+    <div class="col-md-4" style="max-width: 200%;">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="account" style="border: solid 0.1px lightgray; margin: 10px; margin-left: 0; padding: 10px;">
+                <fieldset>
+                    <legend>아이디/패스워드</legend>
+                    <p>
+                        <div class="form-group">
+                            <label asp-for="WriterID" class="control-label"></label>
+                            <input asp-for="WriterID" class="form-control" />
+                            <span asp-validation-for="WriterID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" type="password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword" class="control-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" type="password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </p>
+                </fieldset>
+            </div>
+            <div class="info" style="border: solid 0.1px lightgray; margin: 10px; margin-left: 0; padding: 10px;">
+                <fieldset>
+                    <legend>정보</legend>
+                    <p>
+                        <div class="form-group">
+                            <label asp-for="Title" class="control-label"></label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Head" class="control-label"></label>
+                            <input asp-for="Head" class="form-control" />
+                            <span asp-validation-for="Head" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MallName" class="control-label"></label>
+                            <input asp-for="MallName" class="form-control" />
+                            <span asp-validation-for="MallName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Deadline" class="control-label"></label>
+                            <input asp-for="Deadline" class="form-control" />
+                            <span asp-validation-for="Deadline" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Link" class="control-label"></label>
+                            <input asp-for="Link" class="form-control" />
+                            <span asp-validation-for="Link" class="text-danger"></span>
+                        </div>
+                    </p>
+                </fieldset>
+            </div>
+            <div class="priceInfo" style="border: solid 0.1px lightgray; margin: 10px; margin-left: 0; padding: 10px;">
+                <fieldset>
+                    <legend>가격</legend>
+                    <p>
+                        <div class="form-group">
+                            <label asp-for="Currency" class="control-label"></label>
+                            <select asp-for="Currency" class="form-control">
+                                <option value="₩" selected>₩ (한국 원)</option>
+                                <option value="$">$ (미국 달러)</option>
+                                <option value="€">€ (유로)</option>
+                                <option value="£">£ (영국 파운드)</option>
+                                <option value="¥">¥ (일본 엔, 중국 위안)</option>
+                                <option value="₹">₹ (인도 루피)</option>
+                                <option value="₱">₱ (페소)</option>
+                                <option value="₺">₺ (튀르키예 리라)</option>
+                                <option value="₽">₽ (러시아 루블)</option>
+                                <option value="¢">¢ (센트)</option>
+                                <option value="฿">฿ (태국 바트)</option>
+                                <option value="₫">₫ (베트남 동)</option>
+                                <option value="₴">₴ (우크라이나 흐리우냐)</option>
+                                <option value="₿">₿ (비트코인)</option>
+                            </select>
+                            <span asp-validation-for="Currency" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OrigPrice" class="control-label"></label>
+                            <input asp-for="OrigPrice" class="form-control" />
+                            <span asp-validation-for="OrigPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DeliverPrice" class="control-label"></label>
+                            <input asp-for="DeliverPrice" class="form-control" />
+                            <span asp-validation-for="DeliverPrice" class="text-danger"></span>
+                        </div>
+                    </p>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <label asp-for="Etc" class="control-label"></label>
+                <input asp-for="Etc" class="form-control" style="width: 500px;" />
+                <span asp-validation-for="Etc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="작성" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">목록으로 돌아가기</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
