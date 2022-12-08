@@ -81,11 +81,6 @@
     </dl>
     
     <form asp-action="Delete">
-        <div class="form-group">
-            <label asp-for="ConfirmPassword" class="control-label"></label>
-            <input asp-for="ConfirmPassword" class="form-control" style="width: 500px;" />
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-        </div>
 
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="삭제" class="btn btn-danger" /> |
